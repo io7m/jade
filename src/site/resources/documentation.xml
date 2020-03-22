@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<div xmlns="http://www.w3.org/1999/xhtml">
+  <h3>User documentation</h3>
+
+  <h4>Modules</h4>
+  <p>
+    Applications use <tt>jade</tt> via the <tt>com.io7m.jade.api</tt> module, but should also
+    have the <tt>com.io7m.jade.vanilla</tt> module on the class/module path. If the
+    <tt>com.io7m.jade.vanilla</tt> module is not available, the <tt>jade</tt> package
+    will unconditionally return paths equivalent those returned by
+    <a href="#portable-mode">portable mode</a>.
+  </p>
+
+  <h4>Using Directories</h4>
+  <p>
+    The <tt>jade</tt> package selects a set of application paths based on the current operating system
+    and the given configuration information. Getting access to the basic set of application directories
+    for an application named <tt>Widget</tt> is straightforward:
+  </p>
+
+  <pre class="code"><![CDATA[
+final var configuration =
+  ApplicationDirectoryConfiguration.builder()
+    .setApplicationName("Widget")
+    .build();
+
+final var directories =
+  ApplicationDirectories.get(configuration);
+
+System.out.println("Configuration directory: " + directories.configurationDirectory());
+System.out.println("Data directory: " + directories.dataDirectory());
+System.out.println("Cache directory: " + directories.cacheDirectory());
+]]></pre>
+
+  <h4 id="portable-mode">Portable Mode</h4>
+  <p>
+    Applications, particularly on Windows, often want to run in <i>portable mode</i>. Portable mode
+    essentially means that all of the paths used by the application are given relative to the
+    initial working directory of the application. This is typically used to facilitate running
+    applications from removable USB storage devices without saving any data to the host operating
+    system storage.
+  </p>
+  <p>
+    The <tt>jade</tt> API allows for specifying the name of a system property that will be
+    consulted in order to determine if the application wants to run in portable mode. If the
+    named system property has a value parsed as <tt>true</tt>, the API will return paths
+    relative to the application rather than system-specific paths.
+  </p>
+
+  <pre class="code"><![CDATA[
+final var configuration =
+  ApplicationDirectoryConfiguration.builder()
+    .setApplicationName("Widget")
+    .setPortablePropertyName("com.io7m.example.portable")
+    .build();
+
+System.setProperty("com.io7m.example.portable", "true");
+
+final var directories =
+  ApplicationDirectories.get(configuration);
+
+System.out.println("Configuration directory: " + directories.configurationDirectory());
+System.out.println("Data directory: " + directories.dataDirectory());
+System.out.println("Cache directory: " + directories.cacheDirectory());
+]]></pre>
+
+  <h4>JavaDoc</h4>
+  <p>
+    <a href="documentation/apidocs/index.html">API documentation</a>
+  </p>
+</div>
