@@ -23,7 +23,7 @@ module com.io7m.jade.api
   requires static org.osgi.annotation.bundle;
   requires static org.osgi.annotation.versioning;
 
-  requires com.io7m.jade.spi;
+  requires transitive com.io7m.jade.spi;
   requires org.slf4j;
 
   uses com.io7m.jade.spi.ApplicationDirectoryProviderType;
