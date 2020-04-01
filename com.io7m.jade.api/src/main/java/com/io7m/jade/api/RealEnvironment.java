@@ -20,8 +20,10 @@ import com.io7m.jade.spi.ApplicationEnvironmentType;
 
 import java.nio.file.FileSystem;
 import java.nio.file.FileSystems;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.ServiceLoader;
 
 final class RealEnvironment implements ApplicationEnvironmentType
 {
@@ -50,5 +52,14 @@ final class RealEnvironment implements ApplicationEnvironmentType
     return Optional.ofNullable(
       System.getenv(Objects.requireNonNull(name, "name"))
     );
+  }
+
+  @Override
+  public <S> Iterator<S> servicesFor(
+    final Class<S> clazz)
+  {
+    return ServiceLoader.load(
+      Objects.requireNonNull(clazz, "clazz")
+    ).iterator();
   }
 }

@@ -65,6 +65,37 @@ System.out.println("Data directory: " + directories.dataDirectory());
 System.out.println("Cache directory: " + directories.cacheDirectory());
 ]]></pre>
 
+  <h4 id="override">Override</h4>
+  <p>
+    The <tt>jade</tt> API allows for specifying the name of a system property that will be
+    consulted in order to determine if the application wants to override the directory used
+    to calculate application directories. If the named system property exists, the value of
+    the property will be treated as a path, and all application directories will be calculated
+    relative to this path.
+  </p>
+
+  <pre class="code"><![CDATA[
+final var configuration =
+  ApplicationDirectoryConfiguration.builder()
+    .setApplicationName("Widget")
+    .setOverridePropertyName("com.io7m.example.override")
+    .build();
+
+System.setProperty("com.io7m.example.override", "/tmp/x");
+
+final var directories =
+  ApplicationDirectories.get(configuration);
+
+// Prints: /tmp/x/config
+System.out.println("Configuration directory: " + directories.configurationDirectory());
+
+// Prints: /tmp/x/data
+System.out.println("Data directory: " + directories.dataDirectory());
+
+// Prints: /tmp/x/cache
+System.out.println("Cache directory: " + directories.cacheDirectory());
+]]></pre>
+
   <h4>JavaDoc</h4>
   <p>
     <a href="documentation/apidocs/index.html">API documentation</a>

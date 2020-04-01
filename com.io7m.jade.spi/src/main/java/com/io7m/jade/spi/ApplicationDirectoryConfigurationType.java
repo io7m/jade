@@ -50,6 +50,22 @@ public interface ApplicationDirectoryConfigurationType
   Optional<String> portablePropertyName();
 
   /**
+   * The name of a system property which, if present, will be used to specify
+   * a fixed base directory against which all other application directories will
+   * be resolved. If the system property is present, the contents will be
+   * used directory as the name of a base directory, and all calculated application
+   * paths will be relative to this directory.
+   *
+   * Paths exactly equivalent to those produced by <i>portable</i> mode can
+   * be obtained by specifying the application's working directory in the
+   * system property.
+   *
+   * @return A property name to enable portable mode
+   */
+
+  Optional<String> overridePropertyName();
+
+  /**
    * Check preconditions for the type.
    */
 
