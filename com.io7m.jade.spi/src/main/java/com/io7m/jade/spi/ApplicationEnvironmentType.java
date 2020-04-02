@@ -17,15 +17,53 @@
 package com.io7m.jade.spi;
 
 import java.nio.file.FileSystem;
+import java.util.Iterator;
 import java.util.Optional;
+
+/**
+ * An abstraction over the application's execution environment.
+ */
 
 public interface ApplicationEnvironmentType
 {
+  /**
+   * @return The application's filesystem
+   */
+
   FileSystem filesystem();
 
+  /**
+   * Retrieve the value of a system property.
+   *
+   * @param name The property name
+   *
+   * @return The property value
+   */
+
   Optional<String> systemProperty(
-    String name);
+    String name
+  );
+
+  /**
+   * Retrieve the value of an environment variable.
+   *
+   * @param name The variable name
+   *
+   * @return The variable value
+   */
 
   Optional<String> environmentVariable(
-    String name);
+    String name
+  );
+
+  /**
+   * @param clazz The service class
+   * @param <S>   The service type
+   *
+   * @return Available services of type {@code S}
+   */
+
+  <S> Iterator<S> servicesFor(
+    Class<S> clazz
+  );
 }

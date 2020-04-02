@@ -23,9 +23,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.ServiceLoader;
 
 /**
  * The primary API used to get access to application directories.
@@ -81,20 +81,60 @@ public final class ApplicationDirectories implements ApplicationDirectoriesType
     final ApplicationDirectoryConfiguration configuration,
     final ApplicationEnvironmentType environment)
   {
-    if (!isPortable(configuration, environment)) {
-      final var iterator =
-        ServiceLoader.load(ApplicationDirectoryProviderType.class)
-          .iterator();
+    final Optional<Path> overrideOpt = isOverridden(configuration, environment);
+    if (overrideOpt.isPresent()) {
+      return useOverride(configuration, environment, overrideOpt.get());
+    }
 
-      while (iterator.hasNext()) {
-        final var provider = iterator.next();
-        final var matches = provider.initialize(configuration, environment);
-        if (matches) {
-          return new ApplicationDirectories(provider);
-        }
+    if (isPortable(configuration, environment)) {
+      return usePortable(configuration, environment);
+    }
+
+    final var iterator =
+      environment.servicesFor(ApplicationDirectoryProviderType.class);
+
+    while (iterator.hasNext()) {
+      final var provider = iterator.next();
+      final var matches = provider.initialize(configuration, environment);
+      if (matches) {
+        return new ApplicationDirectories(provider);
       }
     }
 
+    return usePortable(configuration, environment);
+  }
+
+  private static Optional<Path> isOverridden(
+    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationEnvironmentType environment)
+  {
+    final var overNameOpt = configuration.overridePropertyName();
+    if (overNameOpt.isPresent()) {
+      final var propName = overNameOpt.get();
+      LOG.debug("isOverridden: checking system property {}", propName);
+      final var path = environment.systemProperty(propName).map(Paths::get);
+      LOG.debug("isOverridden: {}", path);
+      return path;
+    }
+
+    LOG.debug("isOverridden: {}", Boolean.FALSE);
+    return Optional.empty();
+  }
+
+  private static ApplicationDirectoriesType useOverride(
+    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationEnvironmentType environment,
+    final Path override)
+  {
+    final var fallback = new OverrideDirectories(override);
+    fallback.initialize(configuration, environment);
+    return new ApplicationDirectories(fallback);
+  }
+
+  private static ApplicationDirectoriesType usePortable(
+    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationEnvironmentType environment)
+  {
     final var fallback = new PortableDirectories();
     fallback.initialize(configuration, environment);
     return new ApplicationDirectories(fallback);
