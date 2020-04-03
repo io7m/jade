@@ -148,24 +148,6 @@
         </executions>
       </plugin>
 
-      <!-- Strip JavaDoc indices -->
-      <plugin>
-        <groupId>io.github.zlika</groupId>
-        <artifactId>reproducible-build-maven-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>strip-javadoc-indices</id>
-            <goals>
-              <goal>strip-jar</goal>
-            </goals>
-            <phase>package</phase>
-            <configuration>
-              <outputDirectory>${project.build.directory}/documentation/apidocs</outputDirectory>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
       <!-- Produce documentation archive -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
