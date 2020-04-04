@@ -14,8 +14,19 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
+package com.io7m.jade.spi;
+
 /**
- * Java application directory etiquette (Vanilla implementations)
+ * The type of application directory configurations.
  */
 
-package com.io7m.jade.vanilla;
+public interface ApplicationProviderContextType
+{
+  /**
+   * The name of the application.
+   *
+   * @return The name of the application.
+   */
+
+  String applicationName();
+}

@@ -16,8 +16,8 @@
 
 package com.io7m.jade.vanilla;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 
 import java.nio.file.Path;
 import java.util.Optional;
@@ -25,6 +25,6 @@ import java.util.Optional;
 interface PathSourceType
 {
   Optional<Path> tryPath(
-    ApplicationDirectoryConfiguration configuration,
+    ApplicationProviderContextType configuration,
     ApplicationEnvironmentType environment);
 }

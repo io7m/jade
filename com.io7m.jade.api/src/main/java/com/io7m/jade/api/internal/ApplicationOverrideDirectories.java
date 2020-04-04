@@ -14,51 +14,48 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jade.api;
+package com.io7m.jade.api.internal;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationDirectoryProviderType;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Objects;
 
-final class PortableDirectories implements ApplicationDirectoryProviderType
+public final class ApplicationOverrideDirectories
+  implements ApplicationDirectoryProviderType
 {
+  private final Path baseDirectory;
   private Path configurationDirectory;
   private Path dataDirectory;
   private Path cacheDirectory;
 
-  PortableDirectories()
+  public ApplicationOverrideDirectories(
+    final Path inBaseDirectory)
   {
-
+    this.baseDirectory =
+      Objects.requireNonNull(inBaseDirectory, "baseDirectory");
   }
 
   @Override
   public boolean initialize(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     Objects.requireNonNull(configuration, "configuration");
     Objects.requireNonNull(environment, "environment");
 
     this.configurationDirectory =
-      Paths.get("")
-        .resolve(configuration.applicationName())
-        .resolve("config")
+      this.baseDirectory.resolve("config")
         .toAbsolutePath();
 
     this.dataDirectory =
-      Paths.get("")
-        .resolve(configuration.applicationName())
-        .resolve("data")
+      this.baseDirectory.resolve("data")
         .toAbsolutePath();
 
     this.cacheDirectory =
-      Paths.get("")
-        .resolve(configuration.applicationName())
-        .resolve("cache")
+      this.baseDirectory.resolve("cache")
         .toAbsolutePath();
 
     return true;

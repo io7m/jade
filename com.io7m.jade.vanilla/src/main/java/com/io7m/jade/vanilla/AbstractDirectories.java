@@ -20,8 +20,7 @@ import com.io7m.jade.spi.ApplicationDirectoryProviderType;
 
 import java.util.Objects;
 
-public abstract class AbstractDirectories
-  implements ApplicationDirectoryProviderType
+abstract class AbstractDirectories implements ApplicationDirectoryProviderType
 {
   private SystemSelection systemSelection;
 

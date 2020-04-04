@@ -16,15 +16,15 @@
 
 package com.io7m.jade.vanilla;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 
 import java.nio.file.Path;
 
 interface PathTransformerType
 {
   Path transform(
-    ApplicationDirectoryConfiguration configuration,
+    ApplicationProviderContextType configuration,
     ApplicationEnvironmentType environment,
     Path path);
 }

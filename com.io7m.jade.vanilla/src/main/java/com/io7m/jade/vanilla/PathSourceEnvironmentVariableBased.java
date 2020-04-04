@@ -16,8 +16,8 @@
 
 package com.io7m.jade.vanilla;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
@@ -49,7 +49,7 @@ final class PathSourceEnvironmentVariableBased implements PathSourceType
 
   @Override
   public Optional<Path> tryPath(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     final var filesystem = environment.filesystem();
@@ -59,12 +59,19 @@ final class PathSourceEnvironmentVariableBased implements PathSourceType
     if (envOpt.isPresent()) {
       final var env = envOpt.get();
       final var path = filesystem.getPath(env).toAbsolutePath();
-      this.logger.debug("{}: env {}: {}", this.category, this.variableName, path);
+      this.logger.debug(
+        "{}: env {}: {}",
+        this.category,
+        this.variableName,
+        path);
       return Optional.of(path)
         .map(p -> this.transform.transform(configuration, environment, p));
     }
 
-    this.logger.debug("{}: env {} not present", this.category, this.variableName);
+    this.logger.debug(
+      "{}: env {} not present",
+      this.category,
+      this.variableName);
     return Optional.empty();
   }
 }

@@ -16,7 +16,7 @@
 
 package com.io7m.jade.tests;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.ApplicationDirectoryConfiguration;
 import nl.jqno.equalsverifier.EqualsVerifier;
 import org.junit.jupiter.api.Test;
 

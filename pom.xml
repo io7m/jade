@@ -10,12 +10,12 @@
   <parent>
     <groupId>com.io7m.primogenitor</groupId>
     <artifactId>com.io7m.primogenitor.full</artifactId>
-    <version>3.9.0</version>
+    <version>4.0.0</version>
   </parent>
 
   <groupId>com.io7m.jade</groupId>
   <artifactId>com.io7m.jade</artifactId>
-  <version>0.0.3</version>
+  <version>1.0.0</version>
   <packaging>pom</packaging>
 
   <name>com.io7m.jade</name>
@@ -33,7 +33,7 @@
   </modules>
 
   <properties>
-    <io7m.api.previousVersion>0.0.1-SNAPSHOT</io7m.api.previousVersion>
+    <io7m.api.previousVersion>1.0.0</io7m.api.previousVersion>
     <com.io7m.immutables.version>2.8.3</com.io7m.immutables.version>
     <com.codacy.id>1cb085ef5ec44d43b9763ab8c500d927</com.codacy.id>
   </properties>
@@ -151,7 +151,7 @@
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
         <artifactId>com.io7m.primogenitor.support</artifactId>
-        <version>3.9.0</version>
+        <version>4.0.0</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

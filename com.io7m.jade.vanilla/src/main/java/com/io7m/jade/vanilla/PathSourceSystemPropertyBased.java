@@ -16,8 +16,8 @@
 
 package com.io7m.jade.vanilla;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 import org.slf4j.Logger;
 
 import java.nio.file.Path;
@@ -49,7 +49,7 @@ final class PathSourceSystemPropertyBased implements PathSourceType
 
   @Override
   public Optional<Path> tryPath(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     final var filesystem = environment.filesystem();

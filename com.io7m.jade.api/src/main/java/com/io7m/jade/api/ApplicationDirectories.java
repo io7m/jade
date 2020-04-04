@@ -16,9 +16,13 @@
 
 package com.io7m.jade.api;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.internal.ApplicationOverrideDirectories;
+import com.io7m.jade.api.internal.ApplicationPortableDirectories;
+import com.io7m.jade.api.internal.ApplicationProviderContext;
+import com.io7m.jade.api.internal.ApplicationRealEnvironment;
 import com.io7m.jade.spi.ApplicationDirectoryProviderType;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -55,7 +59,7 @@ public final class ApplicationDirectories implements ApplicationDirectoriesType
   public static ApplicationDirectoriesType get(
     final ApplicationDirectoryConfiguration configuration)
   {
-    return get(configuration, new RealEnvironment());
+    return get(configuration, new ApplicationRealEnvironment());
   }
 
   /**
@@ -81,13 +85,16 @@ public final class ApplicationDirectories implements ApplicationDirectoriesType
     final ApplicationDirectoryConfiguration configuration,
     final ApplicationEnvironmentType environment)
   {
+    final ApplicationProviderContextType context =
+      new ApplicationProviderContext(configuration);
+
     final Optional<Path> overrideOpt = isOverridden(configuration, environment);
     if (overrideOpt.isPresent()) {
-      return useOverride(configuration, environment, overrideOpt.get());
+      return useOverride(context, environment, overrideOpt.get());
     }
 
     if (isPortable(configuration, environment)) {
-      return usePortable(configuration, environment);
+      return usePortable(context, environment);
     }
 
     final var iterator =
@@ -95,13 +102,13 @@ public final class ApplicationDirectories implements ApplicationDirectoriesType
 
     while (iterator.hasNext()) {
       final var provider = iterator.next();
-      final var matches = provider.initialize(configuration, environment);
+      final var matches = provider.initialize(context, environment);
       if (matches) {
         return new ApplicationDirectories(provider);
       }
     }
 
-    return usePortable(configuration, environment);
+    return usePortable(context, environment);
   }
 
   private static Optional<Path> isOverridden(
@@ -122,20 +129,20 @@ public final class ApplicationDirectories implements ApplicationDirectoriesType
   }
 
   private static ApplicationDirectoriesType useOverride(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment,
     final Path override)
   {
-    final var fallback = new OverrideDirectories(override);
+    final var fallback = new ApplicationOverrideDirectories(override);
     fallback.initialize(configuration, environment);
     return new ApplicationDirectories(fallback);
   }
 
   private static ApplicationDirectoriesType usePortable(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
-    final var fallback = new PortableDirectories();
+    final var fallback = new ApplicationPortableDirectories();
     fallback.initialize(configuration, environment);
     return new ApplicationDirectories(fallback);
   }
@@ -179,4 +186,5 @@ public final class ApplicationDirectories implements ApplicationDirectoriesType
   {
     return this.provider.cacheDirectory();
   }
+
 }

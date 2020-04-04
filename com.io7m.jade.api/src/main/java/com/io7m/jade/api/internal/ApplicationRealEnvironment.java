@@ -14,7 +14,7 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jade.api;
+package com.io7m.jade.api.internal;
 
 import com.io7m.jade.spi.ApplicationEnvironmentType;
 
@@ -25,9 +25,10 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
-final class RealEnvironment implements ApplicationEnvironmentType
+public final class ApplicationRealEnvironment
+  implements ApplicationEnvironmentType
 {
-  RealEnvironment()
+  public ApplicationRealEnvironment()
   {
 
   }
