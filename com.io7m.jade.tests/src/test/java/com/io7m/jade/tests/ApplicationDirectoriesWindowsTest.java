@@ -16,7 +16,8 @@
 
 package com.io7m.jade.tests;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.internal.ApplicationProviderContext;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
 import com.io7m.jade.vanilla.ApplicationDirectoriesWindows;
 import com.io7m.jade.vanilla.SystemSelection;
@@ -49,6 +50,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var directories = new ApplicationDirectoriesWindows();
     directories.setSystemSelection(
       new SystemSelection()
@@ -57,7 +60,7 @@ public final class ApplicationDirectoriesWindowsTest
     );
 
     final var initialized =
-      directories.initialize(configuration, this.environment);
+      directories.initialize(context, this.environment);
     Assertions.assertFalse(initialized);
   }
 
@@ -69,6 +72,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var directories = new ApplicationDirectoriesWindows();
     directories.setSystemSelection(
@@ -83,7 +88,7 @@ public final class ApplicationDirectoriesWindowsTest
       .thenReturn(Optional.of("C:\\Users\\Grouch"));
 
     final var initialized =
-      directories.initialize(configuration, this.environment);
+      directories.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
   }
 
@@ -95,6 +100,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
@@ -117,7 +124,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -139,6 +146,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
       new SystemSelection()
@@ -158,7 +167,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -178,6 +187,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
       new SystemSelection()
@@ -190,7 +201,7 @@ public final class ApplicationDirectoriesWindowsTest
     Mockito.when(this.environment.filesystem())
       .thenReturn(filesystem);
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -209,6 +220,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
@@ -229,7 +242,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -248,6 +261,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
@@ -270,7 +285,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -292,6 +307,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
       new SystemSelection()
@@ -311,7 +328,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -331,6 +348,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
       new SystemSelection()
@@ -341,7 +360,7 @@ public final class ApplicationDirectoriesWindowsTest
     Mockito.when(this.environment.filesystem())
       .thenReturn(FileSystems.getDefault());
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -360,6 +379,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
@@ -380,7 +401,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -399,6 +420,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
@@ -421,7 +444,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -442,6 +465,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
       new SystemSelection()
@@ -461,7 +486,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -481,6 +506,8 @@ public final class ApplicationDirectoriesWindowsTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
       new SystemSelection()
@@ -491,7 +518,7 @@ public final class ApplicationDirectoriesWindowsTest
     Mockito.when(this.environment.filesystem())
       .thenReturn(FileSystems.getDefault());
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -510,6 +537,8 @@ public final class ApplicationDirectoriesWindowsTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesWindows();
     dir.setSystemSelection(
@@ -530,7 +559,7 @@ public final class ApplicationDirectoriesWindowsTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(

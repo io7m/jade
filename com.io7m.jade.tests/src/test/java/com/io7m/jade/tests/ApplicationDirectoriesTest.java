@@ -17,7 +17,7 @@
 package com.io7m.jade.tests;
 
 import com.io7m.jade.api.ApplicationDirectories;
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
 
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -67,15 +68,15 @@ public final class ApplicationDirectoriesTest
     LOG.debug("data:   {}", directories.dataDirectory());
 
     Assertions.assertEquals(
-      Paths.get("Widget","config").toAbsolutePath(),
+      Paths.get("Widget", "config").toAbsolutePath(),
       directories.configurationDirectory()
     );
     Assertions.assertEquals(
-      Paths.get("Widget","data").toAbsolutePath(),
+      Paths.get("Widget", "data").toAbsolutePath(),
       directories.dataDirectory()
     );
     Assertions.assertEquals(
-      Paths.get("Widget","cache").toAbsolutePath(),
+      Paths.get("Widget", "cache").toAbsolutePath(),
       directories.cacheDirectory()
     );
   }
@@ -130,7 +131,7 @@ public final class ApplicationDirectoriesTest
     Mockito.when(environment.filesystem())
       .thenReturn(FileSystems.getDefault());
     Mockito.when(environment.servicesFor(Mockito.any()))
-      .thenReturn(List.of().iterator());
+      .thenReturn(Collections.emptyIterator());
 
     final var configuration =
       ApplicationDirectoryConfiguration.builder()
@@ -141,15 +142,15 @@ public final class ApplicationDirectoriesTest
       ApplicationDirectories.get(configuration, environment);
 
     Assertions.assertEquals(
-      Paths.get("Widget","config").toAbsolutePath(),
+      Paths.get("Widget", "config").toAbsolutePath(),
       directories.configurationDirectory()
     );
     Assertions.assertEquals(
-      Paths.get("Widget","data").toAbsolutePath(),
+      Paths.get("Widget", "data").toAbsolutePath(),
       directories.dataDirectory()
     );
     Assertions.assertEquals(
-      Paths.get("Widget","cache").toAbsolutePath(),
+      Paths.get("Widget", "cache").toAbsolutePath(),
       directories.cacheDirectory()
     );
   }

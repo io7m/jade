@@ -15,7 +15,7 @@
  */
 
 /**
- * Java application directory etiquette (Vanilla implementations)
+ * Java application directory etiquette (API internal classes)
  */
 
-package com.io7m.jade.vanilla;
+package com.io7m.jade.api.internal;

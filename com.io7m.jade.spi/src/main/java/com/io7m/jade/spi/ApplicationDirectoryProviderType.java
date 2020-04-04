@@ -28,14 +28,14 @@ public interface ApplicationDirectoryProviderType
    * Initialize the provider, returning {@code true} if the provider is
    * applicable to the current application environment and operating system.
    *
-   * @param configuration The configuration
-   * @param environment   The environment
+   * @param context     The context
+   * @param environment The environment
    *
    * @return {@code true} if this provider is applicable
    */
 
   boolean initialize(
-    ApplicationDirectoryConfiguration configuration,
+    ApplicationProviderContextType context,
     ApplicationEnvironmentType environment);
 
   Path configurationDirectory();

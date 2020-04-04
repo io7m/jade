@@ -20,7 +20,9 @@
 
 @Export
 @Version("1.0.0")
+@ProviderType
 package com.io7m.jade.spi;
 
 import org.osgi.annotation.bundle.Export;
+import org.osgi.annotation.versioning.ProviderType;
 import org.osgi.annotation.versioning.Version;

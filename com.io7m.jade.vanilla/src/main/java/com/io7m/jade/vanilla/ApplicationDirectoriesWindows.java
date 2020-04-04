@@ -16,8 +16,8 @@
 
 package com.io7m.jade.vanilla;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -157,31 +157,8 @@ public final class ApplicationDirectoriesWindows extends AbstractDirectories
 
   }
 
-  @Override
-  public boolean initialize(
-    final ApplicationDirectoryConfiguration configuration,
-    final ApplicationEnvironmentType environment)
-  {
-    Objects.requireNonNull(configuration, "configuration");
-    Objects.requireNonNull(environment, "environment");
-
-    if (!this.systemSelection().isWindows()) {
-      LOG.debug("not a Windows platform");
-      return false;
-    }
-
-    this.configurationDirectory =
-      makeConfigDirectory(configuration, environment);
-    this.dataDirectory =
-      makeDataDirectory(configuration, environment);
-    this.cacheDirectory =
-      makeCacheDirectory(configuration, environment);
-
-    return true;
-  }
-
   private static Path makeConfigDirectory(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     for (final var source : CONFIG_DIRECTORY_SOURCES) {
@@ -203,7 +180,7 @@ public final class ApplicationDirectoriesWindows extends AbstractDirectories
   }
 
   private static Path makeDataDirectory(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     for (final var source : DATA_DIRECTORY_SOURCES) {
@@ -225,7 +202,7 @@ public final class ApplicationDirectoriesWindows extends AbstractDirectories
   }
 
   private static Path makeCacheDirectory(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     for (final var source : CACHE_DIRECTORY_SOURCES) {
@@ -244,6 +221,29 @@ public final class ApplicationDirectoriesWindows extends AbstractDirectories
 
     LOG.debug("cacheDirectory: used fallback: {}", fallback);
     return fallback;
+  }
+
+  @Override
+  public boolean initialize(
+    final ApplicationProviderContextType configuration,
+    final ApplicationEnvironmentType environment)
+  {
+    Objects.requireNonNull(configuration, "configuration");
+    Objects.requireNonNull(environment, "environment");
+
+    if (!this.systemSelection().isWindows()) {
+      LOG.debug("not a Windows platform");
+      return false;
+    }
+
+    this.configurationDirectory =
+      makeConfigDirectory(configuration, environment);
+    this.dataDirectory =
+      makeDataDirectory(configuration, environment);
+    this.cacheDirectory =
+      makeCacheDirectory(configuration, environment);
+
+    return true;
   }
 
   @Override

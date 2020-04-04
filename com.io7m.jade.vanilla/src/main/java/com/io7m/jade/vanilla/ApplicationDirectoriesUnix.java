@@ -16,8 +16,8 @@
 
 package com.io7m.jade.vanilla;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
+import com.io7m.jade.spi.ApplicationProviderContextType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -157,9 +157,75 @@ public final class ApplicationDirectoriesUnix extends AbstractDirectories
 
   }
 
+  private static Path makeConfigDirectory(
+    final ApplicationProviderContextType configuration,
+    final ApplicationEnvironmentType environment)
+  {
+    for (final var source : CONFIG_DIRECTORY_SOURCES) {
+      final var result = source.tryPath(configuration, environment);
+      if (result.isPresent()) {
+        return result.get();
+      }
+    }
+
+    final Path fallback =
+      environment.filesystem()
+        .getPath("")
+        .resolve(configuration.applicationName())
+        .resolve("config")
+        .toAbsolutePath();
+
+    LOG.debug("configurationDirectory: used fallback: {}", fallback);
+    return fallback;
+  }
+
+  private static Path makeDataDirectory(
+    final ApplicationProviderContextType configuration,
+    final ApplicationEnvironmentType environment)
+  {
+    for (final var source : DATA_DIRECTORY_SOURCES) {
+      final var result = source.tryPath(configuration, environment);
+      if (result.isPresent()) {
+        return result.get();
+      }
+    }
+
+    final Path fallback =
+      environment.filesystem()
+        .getPath("")
+        .resolve(configuration.applicationName())
+        .resolve("data")
+        .toAbsolutePath();
+
+    LOG.debug("dataDirectory: used fallback: {}", fallback);
+    return fallback;
+  }
+
+  private static Path makeCacheDirectory(
+    final ApplicationProviderContextType configuration,
+    final ApplicationEnvironmentType environment)
+  {
+    for (final var source : CACHE_DIRECTORY_SOURCES) {
+      final var result = source.tryPath(configuration, environment);
+      if (result.isPresent()) {
+        return result.get();
+      }
+    }
+
+    final Path fallback =
+      environment.filesystem()
+        .getPath("")
+        .resolve(configuration.applicationName())
+        .resolve("cache")
+        .toAbsolutePath();
+
+    LOG.debug("cacheDirectory: used fallback: {}", fallback);
+    return fallback;
+  }
+
   @Override
   public boolean initialize(
-    final ApplicationDirectoryConfiguration configuration,
+    final ApplicationProviderContextType configuration,
     final ApplicationEnvironmentType environment)
   {
     Objects.requireNonNull(configuration, "configuration");
@@ -196,71 +262,5 @@ public final class ApplicationDirectoriesUnix extends AbstractDirectories
   public Path cacheDirectory()
   {
     return this.cacheDirectory;
-  }
-
-  private static Path makeConfigDirectory(
-    final ApplicationDirectoryConfiguration configuration,
-    final ApplicationEnvironmentType environment)
-  {
-    for (final var source : CONFIG_DIRECTORY_SOURCES) {
-      final var result = source.tryPath(configuration, environment);
-      if (result.isPresent()) {
-        return result.get();
-      }
-    }
-
-    final Path fallback =
-      environment.filesystem()
-        .getPath("")
-        .resolve(configuration.applicationName())
-        .resolve("config")
-        .toAbsolutePath();
-
-    LOG.debug("configurationDirectory: used fallback: {}", fallback);
-    return fallback;
-  }
-
-  private static Path makeDataDirectory(
-    final ApplicationDirectoryConfiguration configuration,
-    final ApplicationEnvironmentType environment)
-  {
-    for (final var source : DATA_DIRECTORY_SOURCES) {
-      final var result = source.tryPath(configuration, environment);
-      if (result.isPresent()) {
-        return result.get();
-      }
-    }
-
-    final Path fallback =
-      environment.filesystem()
-        .getPath("")
-        .resolve(configuration.applicationName())
-        .resolve("data")
-        .toAbsolutePath();
-
-    LOG.debug("dataDirectory: used fallback: {}", fallback);
-    return fallback;
-  }
-
-  private static Path makeCacheDirectory(
-    final ApplicationDirectoryConfiguration configuration,
-    final ApplicationEnvironmentType environment)
-  {
-    for (final var source : CACHE_DIRECTORY_SOURCES) {
-      final var result = source.tryPath(configuration, environment);
-      if (result.isPresent()) {
-        return result.get();
-      }
-    }
-
-    final Path fallback =
-      environment.filesystem()
-        .getPath("")
-        .resolve(configuration.applicationName())
-        .resolve("cache")
-        .toAbsolutePath();
-
-    LOG.debug("cacheDirectory: used fallback: {}", fallback);
-    return fallback;
   }
 }

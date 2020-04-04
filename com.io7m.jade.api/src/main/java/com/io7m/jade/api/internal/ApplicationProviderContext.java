@@ -14,8 +14,28 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-/**
- * Java application directory etiquette (Vanilla implementations)
- */
+package com.io7m.jade.api.internal;
 
-package com.io7m.jade.vanilla;
+import com.io7m.jade.api.ApplicationDirectoryConfiguration;
+import com.io7m.jade.spi.ApplicationProviderContextType;
+
+import java.util.Objects;
+
+public final class ApplicationProviderContext
+  implements ApplicationProviderContextType
+{
+  private final ApplicationDirectoryConfiguration configuration;
+
+  public ApplicationProviderContext(
+    final ApplicationDirectoryConfiguration inConfiguration)
+  {
+    this.configuration =
+      Objects.requireNonNull(inConfiguration, "configuration");
+  }
+
+  @Override
+  public String applicationName()
+  {
+    return this.configuration.applicationName();
+  }
+}

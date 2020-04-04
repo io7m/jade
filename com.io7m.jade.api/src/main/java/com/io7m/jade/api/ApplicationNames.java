@@ -14,7 +14,7 @@
  * IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
  */
 
-package com.io7m.jade.spi;
+package com.io7m.jade.api;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
@@ -25,17 +25,17 @@ import java.util.regex.Pattern;
 
 public final class ApplicationNames
 {
-  private ApplicationNames()
-  {
-
-  }
-
   /**
    * The pattern that defines a valid application name.
    */
 
   public static final Pattern VALID_NAMES =
     Pattern.compile("[\\p{Alnum}_\\.]+", Pattern.UNICODE_CHARACTER_CLASS);
+
+  private ApplicationNames()
+  {
+
+  }
 
   /**
    * Check that the given name is a valid application name.

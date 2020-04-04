@@ -16,7 +16,7 @@
 
 package com.io7m.jade.tests;
 
-import com.io7m.jade.spi.ApplicationNames;
+import com.io7m.jade.api.ApplicationNames;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DynamicTest;
 import org.junit.jupiter.api.TestFactory;

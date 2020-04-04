@@ -16,7 +16,8 @@
 
 package com.io7m.jade.tests;
 
-import com.io7m.jade.spi.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.ApplicationDirectoryConfiguration;
+import com.io7m.jade.api.internal.ApplicationProviderContext;
 import com.io7m.jade.spi.ApplicationEnvironmentType;
 import com.io7m.jade.vanilla.ApplicationDirectoriesUnix;
 import com.io7m.jade.vanilla.SystemSelection;
@@ -48,6 +49,8 @@ public final class ApplicationDirectoriesUnixTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
       new SystemSelection()
@@ -55,7 +58,7 @@ public final class ApplicationDirectoriesUnixTest
         .setWindows(true)
     );
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertFalse(initialized);
   }
 
@@ -67,6 +70,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -88,7 +93,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -107,6 +112,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -127,7 +134,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -147,6 +154,8 @@ public final class ApplicationDirectoriesUnixTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
       new SystemSelection()
@@ -159,7 +168,7 @@ public final class ApplicationDirectoriesUnixTest
     Mockito.when(this.environment.filesystem())
       .thenReturn(filesystem);
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -178,6 +187,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -198,7 +209,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -217,6 +228,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -239,7 +252,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -260,6 +273,8 @@ public final class ApplicationDirectoriesUnixTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
       new SystemSelection()
@@ -279,7 +294,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -300,6 +315,8 @@ public final class ApplicationDirectoriesUnixTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
       new SystemSelection()
@@ -310,7 +327,7 @@ public final class ApplicationDirectoriesUnixTest
     Mockito.when(this.environment.filesystem())
       .thenReturn(FileSystems.getDefault());
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -329,6 +346,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -349,7 +368,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -369,6 +388,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -391,7 +412,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -412,6 +433,8 @@ public final class ApplicationDirectoriesUnixTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
       new SystemSelection()
@@ -431,7 +454,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -451,6 +474,8 @@ public final class ApplicationDirectoriesUnixTest
         .setApplicationName("Widget")
         .build();
 
+    final var context = new ApplicationProviderContext(configuration);
+
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
       new SystemSelection()
@@ -461,7 +486,7 @@ public final class ApplicationDirectoriesUnixTest
     Mockito.when(this.environment.filesystem())
       .thenReturn(FileSystems.getDefault());
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(
@@ -480,6 +505,8 @@ public final class ApplicationDirectoriesUnixTest
       ApplicationDirectoryConfiguration.builder()
         .setApplicationName("Widget")
         .build();
+
+    final var context = new ApplicationProviderContext(configuration);
 
     final var dir = new ApplicationDirectoriesUnix();
     dir.setSystemSelection(
@@ -500,7 +527,7 @@ public final class ApplicationDirectoriesUnixTest
           .toString()
       ));
 
-    final var initialized = dir.initialize(configuration, this.environment);
+    final var initialized = dir.initialize(context, this.environment);
     Assertions.assertTrue(initialized);
 
     Assertions.assertEquals(

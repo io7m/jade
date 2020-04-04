@@ -23,9 +23,6 @@ import com.io7m.jade.vanilla.ApplicationDirectoriesWindows;
 
 module com.io7m.jade.vanilla
 {
-  requires static org.osgi.annotation.bundle;
-  requires static org.osgi.annotation.versioning;
-
   requires com.io7m.jade.spi;
   requires org.apache.commons.lang3;
   requires org.slf4j;
@@ -33,6 +30,4 @@ module com.io7m.jade.vanilla
   provides com.io7m.jade.spi.ApplicationDirectoryProviderType
     with ApplicationDirectoriesUnix,
       ApplicationDirectoriesWindows;
-
-  exports com.io7m.jade.vanilla;
 }
