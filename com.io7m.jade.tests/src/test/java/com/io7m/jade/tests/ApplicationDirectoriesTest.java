@@ -28,7 +28,6 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.FileSystems;
 import java.nio.file.Paths;
 import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
 
 public final class ApplicationDirectoriesTest
@@ -158,9 +157,20 @@ public final class ApplicationDirectoriesTest
   @Test
   public void testIntegrationOverride()
   {
+    final var root0 =
+      FileSystems.getDefault()
+        .getRootDirectories()
+        .iterator()
+        .next()
+      .resolve("tmp")
+      .resolve("x")
+      .resolve("y")
+      .resolve("z")
+      .toAbsolutePath();
+
     System.setProperty(
       "com.io7m.jade.override",
-      "/tmp/x"
+      root0.toString()
     );
 
     final var configuration =
@@ -174,16 +184,16 @@ public final class ApplicationDirectoriesTest
     LOG.debug("data:   {}", directories.dataDirectory());
 
     Assertions.assertEquals(
-      Paths.get("/tmp/x/config"),
-      directories.configurationDirectory()
+      root0.resolve("config").toString(),
+      directories.configurationDirectory().toString()
     );
     Assertions.assertEquals(
-      Paths.get("/tmp/x/data"),
-      directories.dataDirectory()
+      root0.resolve("data").toString(),
+      directories.dataDirectory().toString()
     );
     Assertions.assertEquals(
-      Paths.get("/tmp/x/cache"),
-      directories.cacheDirectory()
+      root0.resolve("cache").toString(),
+      directories.cacheDirectory().toString()
     );
   }
 }
