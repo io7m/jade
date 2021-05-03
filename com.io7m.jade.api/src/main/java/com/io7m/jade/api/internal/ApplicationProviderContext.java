@@ -21,10 +21,20 @@ import com.io7m.jade.spi.ApplicationProviderContextType;
 
 import java.util.Objects;
 
+/**
+ * An application provider context.
+ */
+
 public final class ApplicationProviderContext
   implements ApplicationProviderContextType
 {
   private final ApplicationDirectoryConfiguration configuration;
+
+  /**
+   * An application provider context.
+   *
+   * @param inConfiguration The application directory configuration
+   */
 
   public ApplicationProviderContext(
     final ApplicationDirectoryConfiguration inConfiguration)

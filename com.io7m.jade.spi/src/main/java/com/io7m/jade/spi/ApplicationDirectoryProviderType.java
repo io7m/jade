@@ -38,9 +38,21 @@ public interface ApplicationDirectoryProviderType
     ApplicationProviderContextType context,
     ApplicationEnvironmentType environment);
 
+  /**
+   * @return A single base directory relative to which user-specific configuration files should be written.
+   */
+
   Path configurationDirectory();
 
+  /**
+   * @return The directory that contains data files
+   */
+
   Path dataDirectory();
+
+  /**
+   * @return A single base directory relative to which user-specific non-essential (cached) data should be written.
+   */
 
   Path cacheDirectory();
 }

@@ -24,12 +24,20 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
 
+/**
+ * A set of "portable" directories.
+ */
+
 public final class ApplicationPortableDirectories
   implements ApplicationDirectoryProviderType
 {
   private Path configurationDirectory;
   private Path dataDirectory;
   private Path cacheDirectory;
+
+  /**
+   * A set of "portable" directories.
+   */
 
   public ApplicationPortableDirectories()
   {

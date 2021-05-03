@@ -25,6 +25,10 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Application directories on UNIX-like platforms.
+ */
+
 public final class ApplicationDirectoriesUnix extends AbstractDirectories
 {
   private static final Logger LOG =
@@ -126,7 +130,6 @@ public final class ApplicationDirectoriesUnix extends AbstractDirectories
           .toAbsolutePath()
     );
 
-
   private static final List<PathSourceType> CONFIG_DIRECTORY_SOURCES =
     List.of(
       CONFIG_DIR_ENV_XDG,
@@ -151,6 +154,10 @@ public final class ApplicationDirectoriesUnix extends AbstractDirectories
   private Path configurationDirectory;
   private Path dataDirectory;
   private Path cacheDirectory;
+
+  /**
+   * Application directories on UNIX-like platforms.
+   */
 
   public ApplicationDirectoriesUnix()
   {

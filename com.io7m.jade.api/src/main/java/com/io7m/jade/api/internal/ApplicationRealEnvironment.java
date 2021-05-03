@@ -25,9 +25,17 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.ServiceLoader;
 
+/**
+ * An application environment based on the real system environment.
+ */
+
 public final class ApplicationRealEnvironment
   implements ApplicationEnvironmentType
 {
+  /**
+   * An application environment based on the real system environment.
+   */
+
   public ApplicationRealEnvironment()
   {
 

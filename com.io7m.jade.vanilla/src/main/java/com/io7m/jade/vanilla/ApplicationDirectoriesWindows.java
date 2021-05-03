@@ -25,6 +25,10 @@ import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Application directories on the Windows platform.
+ */
+
 public final class ApplicationDirectoriesWindows extends AbstractDirectories
 {
   private static final Logger LOG =
@@ -151,6 +155,10 @@ public final class ApplicationDirectoriesWindows extends AbstractDirectories
   private Path configurationDirectory;
   private Path dataDirectory;
   private Path cacheDirectory;
+
+  /**
+   * Application directories on the Windows platform.
+   */
 
   public ApplicationDirectoriesWindows()
   {

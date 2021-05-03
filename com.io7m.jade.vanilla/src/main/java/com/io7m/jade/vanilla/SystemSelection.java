@@ -18,15 +18,27 @@ package com.io7m.jade.vanilla;
 
 import org.apache.commons.lang3.SystemUtils;
 
+/**
+ * The system selection function.
+ */
+
 public final class SystemSelection
 {
   private boolean isWindows;
   private boolean isUnix;
 
+  /**
+   * The system selection function.
+   */
+
   public SystemSelection()
   {
 
   }
+
+  /**
+   * @return A system selection from the current system
+   */
 
   public static SystemSelection fromSystem()
   {
@@ -36,10 +48,22 @@ public final class SystemSelection
     return selection;
   }
 
+  /**
+   * @return {@code true} if the system is a Windows platform
+   */
+
   public boolean isWindows()
   {
     return this.isWindows;
   }
+
+  /**
+   * Set whether or not the current platform is Windows.
+   *
+   * @param windows {@code true} if the current platform is Windows
+   *
+   * @return this
+   */
 
   public SystemSelection setWindows(
     final boolean windows)
@@ -48,10 +72,22 @@ public final class SystemSelection
     return this;
   }
 
+  /**
+   * @return {@code true} if the system is a UNIX-like platform
+   */
+
   public boolean isUnix()
   {
     return this.isUnix;
   }
+
+  /**
+   * Set whether or not the current platform is UNIX-like.
+   *
+   * @param unix {@code true} if the current platform is UNIX-like
+   *
+   * @return this
+   */
 
   public SystemSelection setUnix(
     final boolean unix)
