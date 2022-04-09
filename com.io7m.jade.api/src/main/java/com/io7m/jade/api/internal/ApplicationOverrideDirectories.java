@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Mark Raynsford <code@io7m.com> http://io7m.com
+ * Copyright © 2020 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -23,6 +23,10 @@ import com.io7m.jade.spi.ApplicationProviderContextType;
 import java.nio.file.Path;
 import java.util.Objects;
 
+/**
+ * A set of directories that override the default selection.
+ */
+
 public final class ApplicationOverrideDirectories
   implements ApplicationDirectoryProviderType
 {
@@ -30,6 +34,12 @@ public final class ApplicationOverrideDirectories
   private Path configurationDirectory;
   private Path dataDirectory;
   private Path cacheDirectory;
+
+  /**
+   * A set of directories that override the default selection.
+   *
+   * @param inBaseDirectory The base directory
+   */
 
   public ApplicationOverrideDirectories(
     final Path inBaseDirectory)

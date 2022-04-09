@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Mark Raynsford <code@io7m.com> http://io7m.com
+ * Copyright © 2020 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -38,9 +38,21 @@ public interface ApplicationDirectoryProviderType
     ApplicationProviderContextType context,
     ApplicationEnvironmentType environment);
 
+  /**
+   * @return A single base directory relative to which user-specific configuration files should be written.
+   */
+
   Path configurationDirectory();
 
+  /**
+   * @return The directory that contains data files
+   */
+
   Path dataDirectory();
+
+  /**
+   * @return A single base directory relative to which user-specific non-essential (cached) data should be written.
+   */
 
   Path cacheDirectory();
 }

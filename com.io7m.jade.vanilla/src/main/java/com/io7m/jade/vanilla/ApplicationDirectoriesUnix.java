@@ -1,5 +1,5 @@
 /*
- * Copyright © 2020 Mark Raynsford <code@io7m.com> http://io7m.com
+ * Copyright © 2020 Mark Raynsford <code@io7m.com> https://www.io7m.com
  *
  * Permission to use, copy, modify, and/or distribute this software for any
  * purpose with or without fee is hereby granted, provided that the above
@@ -24,6 +24,10 @@ import org.slf4j.LoggerFactory;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+
+/**
+ * Application directories on UNIX-like platforms.
+ */
 
 public final class ApplicationDirectoriesUnix extends AbstractDirectories
 {
@@ -126,7 +130,6 @@ public final class ApplicationDirectoriesUnix extends AbstractDirectories
           .toAbsolutePath()
     );
 
-
   private static final List<PathSourceType> CONFIG_DIRECTORY_SOURCES =
     List.of(
       CONFIG_DIR_ENV_XDG,
@@ -151,6 +154,10 @@ public final class ApplicationDirectoriesUnix extends AbstractDirectories
   private Path configurationDirectory;
   private Path dataDirectory;
   private Path cacheDirectory;
+
+  /**
+   * Application directories on UNIX-like platforms.
+   */
 
   public ApplicationDirectoriesUnix()
   {
