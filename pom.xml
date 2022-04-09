@@ -20,7 +20,7 @@
 
   <name>com.io7m.jade</name>
   <description>Java application directory etiquette</description>
-  <url>http://github.com/io7m/jade</url>
+  <url>https://www.io7m.com/software/jade</url>
 
   <inceptionYear>2020</inceptionYear>
 
@@ -35,13 +35,12 @@
   <properties>
     <io7m.api.previousVersion>1.0.0</io7m.api.previousVersion>
     <com.io7m.immutables.version>2.8.3</com.io7m.immutables.version>
-    <com.codacy.id>1cb085ef5ec44d43b9763ab8c500d927</com.codacy.id>
   </properties>
 
   <licenses>
     <license>
       <name>ISC License</name>
-      <url>http://io7m.com/license/isc.txt</url>
+      <url>https://www.io7m.com/license/isc.txt</url>
     </license>
   </licenses>
 
@@ -56,7 +55,7 @@
       <id>io7m</id>
       <name>io7m</name>
       <email>code@io7m.com</email>
-      <url>http://io7m.com</url>
+      <url>https://www.io7m.com</url>
     </developer>
   </developers>
 
