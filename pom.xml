@@ -34,12 +34,12 @@
 
   <properties>
     <io7m.api.previousVersion>1.0.2</io7m.api.previousVersion>
-    <com.io7m.immutables.version>2.9.0</com.io7m.immutables.version>
+    <com.io7m.immutables.version>2.9.3</com.io7m.immutables.version>
   </properties>
 
   <licenses>
     <license>
-      <name>ISC License</name>
+      <name>ISC</name>
       <url>https://www.io7m.com/license/isc.txt</url>
     </license>
   </licenses>
@@ -120,32 +120,32 @@
       <dependency>
         <groupId>nl.jqno.equalsverifier</groupId>
         <artifactId>equalsverifier</artifactId>
-        <version>3.10.1</version>
+        <version>3.14.1</version>
       </dependency>
       <dependency>
         <groupId>org.slf4j</groupId>
         <artifactId>slf4j-api</artifactId>
-        <version>2.0.1</version>
+        <version>2.0.7</version>
       </dependency>
       <dependency>
         <groupId>ch.qos.logback</groupId>
         <artifactId>logback-classic</artifactId>
-        <version>1.4.1</version>
+        <version>1.4.7</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-api</artifactId>
-        <version>5.9.0</version>
+        <version>5.9.3</version>
       </dependency>
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter-engine</artifactId>
-        <version>5.9.0</version>
+        <version>5.9.3</version>
       </dependency>
       <dependency>
         <groupId>org.mockito</groupId>
         <artifactId>mockito-core</artifactId>
-        <version>4.8.0</version>
+        <version>5.3.1</version>
       </dependency>
       <dependency>
         <groupId>com.io7m.primogenitor</groupId>
